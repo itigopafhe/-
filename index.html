@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My History Timeline</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="site-header">
+        <div class="search-bar"><span>🔍</span><input type="text" id="search-input" placeholder="出来事やキーワードで検索..."></div>
+        <div class="controls">
+            <div class="zoom-controls">
+                <button id="zoom-out-btn" class="btn-secondary">-</button>
+                <span id="zoom-level-display">100年</span>
+                <button id="zoom-in-btn" class="btn-secondary">+</button>
+            </div>
+            <button id="filter-btn" class="btn-secondary">地域フィルター</button>
+            <button id="edit-regions-btn" class="btn-secondary">地域を編集</button>
+            <button id="add-event-btn" class="btn-primary">＋ 追加</button>
+        </div>
+    </header>
+
+    <main class="timeline-wrapper">
+        <div class="timeline-container" id="timeline-grid">
+        </div>
+    </main>
+    
+    <div id="century-indicator"></div>
+    
+    <div id="details-modal" class="modal-container hidden">
+        <div class="modal-content">
+            <button class="close-btn">&times;</button>
+            <h2 id="modal-title"></h2>
+            <p id="modal-period"></p>
+            <p id="modal-description"></p>
+            <div id="modal-sub-events-container">
+            </div>
+            <div class="modal-actions">
+                <button id="add-sub-event-btn" class="btn-secondary">＋ サブイベントを追加</button>
+                <button id="edit-event-btn" class="btn-secondary">編集</button>
+                <button id="delete-event-btn" class="btn-danger">削除</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="add-edit-modal" class="modal-container hidden">
+        <div class="modal-content">
+            <button class="close-btn">&times;</button>
+            <h2 id="form-title"></h2>
+            <form id="add-edit-form">
+                <input type="text" id="event-name" placeholder="イベント名" required>
+                <input type="number" id="start-year" placeholder="開始年 (例: -509)" required>
+                <input type="number" id="end-year" placeholder="終了年 (例: -27)" required>
+                <select id="event-region" required>
+                    <option value="">-- 地域を選択 --</option>
+                </select>
+                <textarea id="event-description" placeholder="詳細な説明" rows="4"></textarea>
+                <button type="submit" class="btn-primary">保存する</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="filter-modal" class="modal-container hidden">
+        <div class="modal-content">
+            <button class="close-btn">&times;</button>
+            <h2>表示する地域を選択</h2>
+            <div id="filter-options">
+            </div>
+            <div class="modal-actions">
+                <button id="apply-filter-btn" class="btn-primary">適用</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="region-editor-modal" class="modal-container hidden">
+        <div class="modal-content large">
+            <button class="close-btn">&times;</button>
+            <h2>地域を編集</h2>
+            <div id="region-editor-list">
+            </div>
+            <div class="add-main-region-form">
+                <h3>新しいメイン地域を追加</h3>
+                <input type="text" id="new-main-region-name" placeholder="メイン地域名">
+                <button id="add-main-region-btn" class="btn-primary">追加</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
